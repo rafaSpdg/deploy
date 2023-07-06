@@ -1,0 +1,31 @@
+version: "3"
+services:
+
+  web-artist:
+    image: dolphinevents/artist-service:alfa
+    ports:
+      - "8081:8080"
+    volumes:
+      - ${PWD}/application-artist.properties:/opt/artist-service/application.properties
+  
+  artist-database:
+    image: mysql:8
+    ports: 
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=artist-database
+      - MYSQL_PASSWORD=artistdatabase
+      - MYSQL_DATABASE=artist-database
+
+  # web-events:
+  #   image: dolphinevents/events-service:latest
+  #   ports:
+  #     - "8082:8080"
+
+  # events-database:
+  #   image: postgres:latest
+  #   ports: 
+  #     - "5433:5432"
+  #   environment:
+  #     - POSTGRES_PASSWORD=password
